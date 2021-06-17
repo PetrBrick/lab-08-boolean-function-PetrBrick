@@ -1,7 +1,7 @@
 // Copyright 2021 PetrBrick
 
-#ifndef INCLUDE_BOOLEAN_FUNCTION_
-#define INCLUDE_BOOLEAN_FUNCTION_
+#ifndef INCLUDE_BOOLEAN_FUNCTION_HPP
+#define INCLUDE_BOOLEAN_FUNCTION_HPP
 
 #include <cmath>
 #include <stdexcept>
@@ -91,7 +91,7 @@ class boolean_function {
   // Создаёт функцию от n переменных. Вектор значений представляется числом
   // value Пример: пусть value = 14, т.е. 0...00001110 в двоичной системе а n =
   // 3 тогда АНФ boolean_function будет равна x + y + xy + zx + zy + zyx
-  boolean_function(unsigned long long value, size_type n) {
+  boolean_function(size_t value, size_type n) {
     n = 1 << n;
     data.resize(n);
     for (size_t i = 0; i < n; ++i) {
@@ -358,9 +358,13 @@ class boolean_function {
     return true;
   }
 
-  bool is_T1() const { return data[data.size()] == 1; }  // сохраняет единицу
+  bool is_T1() const {
+    return data[data.size()] == 1;
+  }  // сохраняет единицу
 
-  bool is_T0() const { return data[0] == 0; };  // сохраняет ноль
+  bool is_T0() const {
+    return data[0] == 0;
+  }  // сохраняет ноль
 
   bool is_balanced() const {
     return (data.size() / 2) == weight();
@@ -571,4 +575,4 @@ bool is_functionally_complete_system(
   return true;
 }
 
-#endif  // INCLUDE_BOOLEAN_FUNCTION_
+#endif //INCLUDE_BOOLEAN_FUNCTION_HPP
